@@ -88,6 +88,7 @@
       ansible.builtin.command:
         cmd: "microceph.ceph status"
       delegate_to: "{{ microceph_seed_node }}"
+      changed_when: false
 
     - name: Store join success details in a file for reference
       ansible.builtin.copy:
