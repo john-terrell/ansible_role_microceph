@@ -23,6 +23,7 @@
   ignore_errors: true
   when:
     - inventory_hostname == microceph_seed_node
+  changed_when: false
 
 - name: Bootstrap the master microceph node
   ansible.builtin.command: "microceph cluster bootstrap"
@@ -36,6 +37,7 @@
       ansible.builtin.command: "microceph.ceph status"
       delegate_to: "{{ microceph_seed_node }}"
       register: pre_join_ceph_cluster_status
+      changed_when: false
 
     - name: Create microceph directory if non existent
       ansible.builtin.file:
@@ -67,6 +69,7 @@
       ansible.builtin.command:
         cmd: cat /etc/microceph/join.token
       register: microceph_join_token
+      changed_when: false
 
     - name: Setting join token fact
       ansible.builtin.set_fact:
