@@ -9,6 +9,7 @@
   ansible.builtin.command:
     cmd: "microceph disk list"
   register: microceph_disk_list
+  changed_when: false
 
 - name: Set a fact that can be used to search hostname and device
   ansible.builtin.set_fact:
